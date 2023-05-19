@@ -20,7 +20,9 @@ struct Bubble: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.85)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    .shadow(radius: 2)
             }
             if self.message.type == .gpt {
                 Text(message.text)
@@ -28,10 +30,12 @@ struct Bubble: View {
                     .background(Color.gray)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.85)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                    .shadow(radius: 2)
                 Spacer()
             }
-        }.padding()
+        }
     }
 }
 
