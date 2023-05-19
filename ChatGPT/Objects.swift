@@ -21,7 +21,7 @@ struct ResponseChoices: Decodable {
     let text: String
 }
 
-struct Message {
+struct Message: Hashable {
     let id: String
     let type: Sender
     let text: String
