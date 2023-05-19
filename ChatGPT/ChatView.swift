@@ -55,7 +55,7 @@ struct ChatView: View {
         let userMessage = Message(id: UUID().uuidString, type: .user, text: input, dateCreated: Date())
         list.append(userMessage)
         service.send(message: input).sink { completion in
-            //error
+            print("error")
         } receiveValue: { response in
             guard let firstChoice = response.choices.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) else {return}
             let gptMessage = Message(id: UUID().uuidString, type: .gpt, text: firstChoice, dateCreated: Date())
