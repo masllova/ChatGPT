@@ -11,7 +11,7 @@ import Combine
 
 class OpenAIService {
     func send(message: String) -> AnyPublisher<ResponseBody, Error> {
-        let body = MessageBody(model: Constants.model, prompt: message, temperature: 0.7, max_tokens: 1000)
+        let body = MessageBody(model: Constants.model, prompt: message, temperature: 0.2, max_tokens: 1000)
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(Constants.key)"
         ]
