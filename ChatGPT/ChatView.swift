@@ -17,13 +17,31 @@ struct ChatView: View {
     let service = OpenAIService()
     
     var body: some View {
+        if list.isEmpty {
+            VStack {
+                Spacer()
+                Text(
+"""
+Hello!
+I am your personal assistant, based on the ChatGPT 3.5 language model from OpenAI.
+
+How can I help you?
+""")
+                .padding()
+                .font(.title2)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+            }
+        }
         ScrollView {
             LazyVStack {
                 ForEach(list, id: \.self) {message in
                     Bubble(message: message)
                 }
-            }
-        }.padding(.top)
+            }.rotationEffect(.degrees(180))
+        }.rotationEffect(.degrees(180))
+        .padding(.top)
+        
         .onTapGesture {hideKeyboard()}
         Divider()
         HStack {
@@ -32,7 +50,7 @@ struct ChatView: View {
                 .cornerRadius(10)
                 .overlay(
                     HStack {
-                        Text("Enter...")
+                        Text(" Enter...")
                             .foregroundColor(.gray)
                             .opacity(input.isEmpty ? 1 : 0)
                             .padding(.horizontal, 3)
@@ -40,15 +58,16 @@ struct ChatView: View {
                     }
                 )
                 .shadow(radius: 3)
-            Button {
-                send()
-            } label: {
-                Image(systemName: "paperplane")
-                    .font(.title2)
-                    .foregroundColor(.gray)
-                    .shadow(radius: 5)
+            if list.count % 2 == 0 {
+                Button {
+                    if !input.isEmpty {send()}
+                } label: {
+                    Image(systemName: "paperplane")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .shadow(radius: 5)
+                }
             }
-
         }.padding()
     }
     func send() {
@@ -63,6 +82,7 @@ struct ChatView: View {
         }
         .store(in: &cancellable)
         input = ""
+        hideKeyboard()
     }
     func hideKeyboard() {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

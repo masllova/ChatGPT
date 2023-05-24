@@ -16,6 +16,7 @@ struct Bubble: View {
             if self.message.type == .user {
                 Spacer()
                 Text(message.text)
+                    .textSelection(.enabled)
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)
@@ -24,6 +25,7 @@ struct Bubble: View {
             }
             if self.message.type == .gpt {
                 Text(message.text)
+                    .textSelection(.enabled)
                     .padding()
                     .background(Color.gray)
                     .foregroundColor(.white)
