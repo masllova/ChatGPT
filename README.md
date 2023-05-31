@@ -2,8 +2,7 @@
 The GPT chat simulator app. 
 Uses several libraries and processes responses from the neural network through json
 
-
-https://github.com/masllova/ChatGPT/assets/122267988/c7d27408-659f-4d4a-a965-f008bb8fd800
+https://github.com/masllova/ChatGPT/assets/122267988/7887e3d4-a1e6-4b2b-affe-6603b3c1e695
 
 
 __Attention!__ 
